@@ -1,6 +1,7 @@
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
+import torch.optim as optim
 
 
 class Net(nn.Module):
@@ -28,7 +29,8 @@ class Net(nn.Module):
         for s in size:
             num_features *= s
         return num_features
-    
+
+
 net = Net()
 print(net)
 
@@ -69,7 +71,7 @@ learning_rate = 0.01
 for f in net.parameters():
     f.data.sub_(f.grad.data * learning_rate)
     
-import torch.optim as optim
+
 
 optimizer = optim.SGD(net.parameters(), lr=0.01)
 
